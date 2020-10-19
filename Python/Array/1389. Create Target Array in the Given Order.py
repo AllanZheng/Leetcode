@@ -18,3 +18,11 @@ class Solution(object):
 
 
 print(Solution.createTargetArray(Solution,[1,2,3,4,0],[0,1,2,3,0]))
+
+
+# class Solution:
+#     def createTargetArray(self, nums: List[int], index: List[int]) -> List[int]:
+#         res = []
+#         for i, v in zip(index, nums):
+#             res.insert(i, v)
+#         return res
