@@ -38,3 +38,5 @@ def file_name(file_dir):
 path = sys.path[0]
 print(path)
 file_name(path)
+gopath = sys.path[0]+"\\Golang"
+pypath = sys.path[0]+"\\Python"
