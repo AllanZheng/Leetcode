@@ -13,5 +13,5 @@ func twoSum(nums []int, target int) []int {
 
 func main() {
 	input := []int{2, 2, 1, 0, 3, 2, 2}
-	print(majorityElement(input))
+	print(twoSum(input))
 }
