@@ -10,20 +10,27 @@ func threeSum(nums []int) [][]int {
 	rec := map[string]int{}
 	sort.Ints(nums)
 	for i := 0; i < len(nums)-2; i++ {
-
-		for j := i + 1; j < len(nums)-1; j++ {
-			for k := j + 1; k < len(nums); k++ {
-				if nums[i]+nums[j]+nums[k] == 0 {
-					if _, ok := rec[strconv.Itoa(nums[i])+strconv.Itoa(nums[j])+strconv.Itoa(nums[k])]; !ok {
-						res = append(res, []int{nums[i], nums[j], nums[k]})
-						rec[strconv.Itoa(nums[i])+strconv.Itoa(nums[j])+strconv.Itoa(nums[k])] = 1
-
-					}
-
+		if nums[i] > 0 {
+			break
+		}
+		k := len(nums) - 1
+		j := i + 1
+		for k > j {
+			current := nums[j] + nums[k]
+			if current == -nums[i] {
+				if _, ok := rec[strconv.Itoa(nums[i])+strconv.Itoa(nums[j])+strconv.Itoa(nums[k])]; !ok {
+					res = append(res, []int{nums[i], nums[j], nums[k]})
+					rec[strconv.Itoa(nums[i])+strconv.Itoa(nums[j])+strconv.Itoa(nums[k])] = 1
 				}
+				k--
+				j++
+			} else if current < -nums[i] {
+				k--
+
+			} else {
+				j++
 			}
 		}
-
 	}
 	return res
 }
