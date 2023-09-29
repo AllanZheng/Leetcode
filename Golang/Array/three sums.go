@@ -1,14 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"sort"
-	"strconv"
 )
 
 func threeSum(nums []int) [][]int {
 	res := [][]int{}
-	rec := map[string]int{}
 	sort.Ints(nums)
+<<<<<<< HEAD
 	for i := 0; i < len(nums)-2; i++ {
 		if nums[i] > 0 {
 			break
@@ -29,9 +29,27 @@ func threeSum(nums []int) [][]int {
 
 			} else {
 				j++
+=======
+	fmt.Print(1)
+    for i:=0;i<len(nums)-2;i++{
+    	j:=i+1
+    	k:=len(nums)-1
+    	for j<k{
+    		if nums[j]+nums[k]+nums[i]==0{
+    			res = append(res,[]int{nums[i],nums[j],nums[k]})
+			}
+			j++
+			k--
+			for nums[j]==nums[j-1]&&j<k{
+				j++
+			}
+			for nums[k]==nums[k+1]&&j<k{
+				k--
+>>>>>>> d8fac453d214c38f3a18a1b78672d91986861bac
 			}
 		}
 	}
+
 	return res
 }
 
@@ -43,3 +61,17 @@ func main() {
 	}
 
 }
+//rec := map[string]int{}
+//for i := 0; i < len(nums)-2; i++ {
+//
+//for j := i + 1; j < len(nums)-1; j++ {
+//for k := j + 1; k < len(nums); k++ {
+//if nums[i]+nums[j]+nums[k] == 0 {
+//if _, ok := rec[strconv.Itoa(nums[i])+strconv.Itoa(nums[j])+strconv.Itoa(nums[k])]; !ok {
+//res = append(res, []int{nums[i], nums[j], nums[k]})
+//rec[strconv.Itoa(nums[i])+strconv.Itoa(nums[j])+strconv.Itoa(nums[k])] = 1
+//
+//}
+//
+//}
+//}
