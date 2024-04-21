@@ -1,32 +1,38 @@
 package main
 
-import "container/list"
+import (
+	"container/list"
+	"strings"
+)
 
 func predictPartyVictory(senate string) string {
 	bytes := []byte(senate)
-	queue := list.New()
-	var current byte
-	for i := 0; i < len(senate); i++ {
-		if queue.Len() == 0 {
-			queue.PushBack(bytes[i])
-		} else {
-			front := queue.Front().Value.(byte)
-			if front == bytes[i] {
-				queue.PushBack(bytes[i])
-			} else {
-				current = front
-				queue.Remove(queue.Front())
+	rq, dq := list.New(), list.New()
 
-			}
+	length := len(senate)
+	for i := 0; i < length; i++ {
+		if bytes[i] == 'R' {
+			rq.PushBack(i)
+		} else {
+			dq.PushBack(i)
 		}
 	}
-	if queue.Len() > 0 {
-		current = queue.Front().Value.(byte)
+	for rq.Len() > 0 && dq.Len() > 0 {
+		currentR := rq.Front()
+		currentD := dq.Front()
+		if currentD.Value.(int) < currentR.Value.(int) {
+
+			dq.PushBack(currentD.Value.(int) + length)
+		} else {
+			rq.PushBack(currentR.Value.(int) + length)
+		}
+		rq.Remove(rq.Front())
+		dq.Remove(dq.Front())
 	}
-	if current == 'R' {
+	if rq.Len() > 0 {
 		return "Radiant"
 	} else {
 		return "Dire"
 	}
-
+	(s string, substr string)
 }

@@ -2,6 +2,7 @@ package main
 
 func calcEquation(equations [][]string, values []float64, queries [][]string) []float64 {
 	id := map[string]int{}
+	// 给方程组中的每个变量编号
 	for _, cur := range equations {
 		i, j := cur[0], cur[1]
 		if _, has := id[i]; !has {
@@ -27,12 +28,14 @@ func calcEquation(equations [][]string, values []float64, queries [][]string) []
 		if hasS && hasE && find(start, fa, w) == find(end, fa, w) {
 			res[i] = w[start] / w[end]
 		} else {
-			res[i] = -2
+			res[i] = -1
 		}
 	}
 	return res
 
 }
+
+//并查集find函数
 func find(x int, fa []int, w []float64) int {
 	if fa[x] != x {
 		f := find(fa[x], fa, w)
@@ -41,6 +44,8 @@ func find(x int, fa []int, w []float64) int {
 	}
 	return fa[x]
 }
+
+//并查集合并函数
 func merge(from, to int, val float64, w []float64, fa []int) (fa1 []int, w1 []float64) {
 	fFrom, fTo := find(from, fa, w), find(to, fa, w)
 	fa1 = fa
